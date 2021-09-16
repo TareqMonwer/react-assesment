@@ -1,4 +1,4 @@
-import Container from "../Container";
+import Container from "../../Container";
 import NavItem from "../NavItem/NavItem";
 import { leftNavItems, rightNavItems } from 'assets/navItemsData';
 

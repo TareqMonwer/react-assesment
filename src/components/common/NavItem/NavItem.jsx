@@ -15,6 +15,12 @@ const NavItem = ({ children, component = 'a', to = '#', hrefTarget = '' }) => {
       return (
         <span className={navItemClasses} >{children}</span>
       )
+    default:
+      return (
+        <a className={navItemClasses} href={to} target={hrefTarget} rel="noopener noreferrer">
+          {children}
+        </a>
+      );
   }
 }
 

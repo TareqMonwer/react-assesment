@@ -1,9 +1,19 @@
-import React from 'react';
-import Nav from './components/common/Nav/Nav';
+import React, { useState } from 'react';
+import Drawer from 'components/common/Drawer/Drawer';
+import Nav from 'components/common/Nav/Nav';
 
 function App() {
+  const [drawerOpen, setDrawerOpen] = useState(true);
+  
+  const handleClose = () => {
+    setDrawerOpen(!drawerOpen);
+  }
+
   return (
-    <Nav />
+    <>
+      <Nav />
+      <Drawer open={drawerOpen} onClose={handleClose} />
+    </>
   );
 }
 
