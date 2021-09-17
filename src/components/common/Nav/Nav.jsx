@@ -6,7 +6,7 @@ import clsx from "clsx";
 const Nav = () => {
   return (
     <div className={
-      clsx("py-3 bg-gray-900 text-white fixed w-full top-0 pl-60")}>
+      clsx("py-3 bg-gray-900 text-white pl-60 sticky top-0")}>
       <Container otherClasses="flex justify-between">
           <div className="flex items-center">
             {leftNavItems.map((item, index) => (

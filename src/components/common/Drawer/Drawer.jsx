@@ -27,7 +27,7 @@ const Drawer = ({ open, onClose }) => {
     <div>
       <div
         className={
-          clsx('absolute z-10 cursor-pointer p-3 bg-white border border-1', {
+          clsx('fixed top-0 z-10 cursor-pointer p-3 bg-white border border-1', {
             ['ml-60']: open,
             ['ml-0']: !open
           })

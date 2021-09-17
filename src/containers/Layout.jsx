@@ -15,13 +15,13 @@ const Layout = ({ children }) => {
     <div>
       <Nav />
       <Drawer open={drawerOpen} onClose={handleClose} />
-      <div className={clsx('min-h-screen bg-gray-500', {
+      <div className={clsx('main min-h-screen', {
         ['ml-60']: drawerOpen,
         ['ml-0']: !drawerOpen,
         })}>
-        <Container>
-          {children}
-          </Container>
+        <div className="p-10">
+            {children}
+        </div>
         </div>
     </div>
   );
