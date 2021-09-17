@@ -18,7 +18,6 @@ const Nav = () => {
               <NavItem key={`navR${index}`} {...item} />
             ))}
           </div>
-
       </Container>
     </div>
   );
