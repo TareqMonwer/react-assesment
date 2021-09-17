@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Layout from 'containers/Layout';
+import Button from 'components/common/Button/Button';
 
 const CounterPage = () => {
   const [count, setCount] = useState(0);
@@ -12,11 +13,7 @@ const CounterPage = () => {
         rounded inline-block">
           {count}
         </h1>
-        <button
-          className="bg-indigo-700 text-white px-3 py-2 rounded"
-          onClick={handleSetCount}>
-          Button
-        </button>
+        <Button onClick={handleSetCount} />
       </div>
     </Layout>
   );
