@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { sidebarItems } from 'utils/sidebarRoutes';
+import { sidebarItems } from 'utils/sidebarData';
 import { GiHamburgerMenu } from '@react-icons/all-files/gi/GiHamburgerMenu';
 import { GrClose } from '@react-icons/all-files/gr/GrClose';
 import DrawerBox from './DrawerBox';
@@ -23,6 +23,7 @@ const Drawer = ({ open, onClose }) => {
   }
 
   return (
+    <>
     <div>
       <div
         className={
@@ -52,6 +53,7 @@ const Drawer = ({ open, onClose }) => {
         }
       </div>}
     </div>
+    </>
   );
 }
 

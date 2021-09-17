@@ -1,10 +1,12 @@
-import Container from "../../Container";
+import Container from "../../../containers/Container";
 import NavItem from "../NavItem/NavItem";
-import { leftNavItems, rightNavItems } from 'assets/navItemsData';
+import { leftNavItems, rightNavItems } from 'utils/navItemsData';
+import clsx from "clsx";
 
 const Nav = () => {
   return (
-    <div className="py-3 bg-indigo-900 text-white">
+    <div className={
+      clsx("py-3 bg-gray-900 text-white fixed w-full top-0 pl-60")}>
       <Container otherClasses="flex justify-between">
           <div className="flex items-center">
             {leftNavItems.map((item, index) => (
