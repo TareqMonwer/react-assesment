@@ -1,6 +1,9 @@
-const Input = ({ label, id, onChange, ...props }) => {
-  // const errorInputBorderStyles = "border-red-500";
-  // const errorMsgStyles = "text-red-500 text-xs italic";
+import clsx from "clsx";
+
+const Input = ({ label, id, error, onChange, ...props }) => {
+  const inputStyle = "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+  const errorInputBorderStyles = "border-red-500";
+  const errorMsgStyles = "text-red-500 text-xs italic";
 
   return (
     <>
@@ -11,12 +14,16 @@ const Input = ({ label, id, onChange, ...props }) => {
         {label}
       </label>
       <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+        className={clsx(inputStyle, {
+          [errorInputBorderStyles]: error,
+        })}
         id={id}
         onChange={e => onChange(e.target.value)}
         {...props}
       />
-      {/* put error message here */}
+      {error && (
+        <p className={errorMsgStyles}>{error}</p>
+      )}
     </>
   );
 };

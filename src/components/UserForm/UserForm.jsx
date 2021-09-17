@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "components/common/Button/Button";
 import Input from "components/common/Input/Input";
 import SelectInput from "components/common/SelectInput/SelectInput";
+import Notification from "components/common/Notification/Notification";
+import {
+  emailBlankOrExists,
+  storeUserData,
+  validateEachFields
+} from "services/userService";
 
 const GENDER_OPTIONS = [
   { label: "Female", value: "Female" },
@@ -11,13 +17,48 @@ const GENDER_OPTIONS = [
 const UserForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState();
+  const [gender, setGender] = useState("Male");
   const [phone, setPhone] = useState("");
+  const [emailErr, setEmailErr] = useState(null);
+  const [created, setCreated] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCreated(false)
+    }, 3000)
+  }, [created])
+
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setGender('Male');
+    setPhone("");
+    setEmailErr(null);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("SUBMITTING THE FORM");
-    console.log(name, email, gender, phone);
+    const noBlankInputs = validateEachFields([name, gender, phone]);
+    if (noBlankInputs) {
+      const emailErr = emailBlankOrExists(email);
+      if (!emailErr) {
+        const inputs = { name, email, gender, phone };
+        storeUserData(inputs, setEmailErr)
+          .then(res => {
+            resetForm();
+            setCreated(true);
+          })
+          .catch(err => {
+            console.log(err);
+            setCreated('error');
+          })
+      } else {
+        setEmailErr(emailErr);
+        setCreated('error');
+      }
+    } else {
+      alert('Form fields are left blank!')
+    }
   };
 
   return (
@@ -41,6 +82,7 @@ const UserForm = () => {
             placeholder="Email Address"
             value={email}
             onChange={setEmail}
+            error={emailErr}
           />
         </div>
       </div>
@@ -70,6 +112,12 @@ const UserForm = () => {
           <Button fluid onClick={handleSubmit} type="submit" />
         </div>
       </div>
+      {created && created !== 'error' && (
+        <Notification type="success" message="User created successfully" />
+      )}
+      {created !== false && created === 'error' && (
+        <Notification type="error" message="User creation failed" />
+      )}
     </form>
   );
 };

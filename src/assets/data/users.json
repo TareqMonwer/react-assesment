@@ -1,0 +1,73 @@
+{
+  "users": [
+    {
+      "name": "Tareq",
+      "email": "coolstore@gmail.com",
+      "gender": "Male",
+      "phone": "23432434552",
+      "id": 2
+    },
+    {
+      "name": "Tareq",
+      "email": "thetareq@mail.com",
+      "gender": "Male",
+      "phone": "1685616060",
+      "id": 1631884837530
+    },
+    {
+      "name": "tareq",
+      "email": "hello@mail.com",
+      "phone": "231344313",
+      "id": 1631886123602
+    },
+    {
+      "name": "Tareq",
+      "email": "tareqmonwer.dpi@gmail.com",
+      "gender": "Male",
+      "phone": "34324234",
+      "id": 1631889447294
+    },
+    {
+      "name": "cash-admin",
+      "email": "asdfasfas@gmail.com",
+      "gender": "Male",
+      "phone": "3424324",
+      "id": 1631889490364
+    },
+    {
+      "name": "admin",
+      "email": "tareqmonwer137@gmail.com",
+      "gender": "Male",
+      "phone": "01478526106",
+      "id": 1631890472099
+    },
+    {
+      "name": "cash-admin",
+      "email": "asdfafasdfsdf@gmail.com",
+      "gender": "Male",
+      "phone": "34325425",
+      "id": 1631890613595
+    },
+    {
+      "name": "afsdasdfaf",
+      "email": "teaer@mail.com",
+      "gender": "Male",
+      "phone": "3434324",
+      "id": 1631891155011
+    },
+    {
+      "name": "Tareq Monwer",
+      "email": "thetareqq@mail.com",
+      "gender": "Male",
+      "phone": "01478526106",
+      "id": 1631891389923
+    },
+    {
+      "name": "new random boi",
+      "email": "hello@ga.ca",
+      "gender": "Male",
+      "phone": "5641063165",
+      "id": 1631891482699
+    }
+  ]
+}
