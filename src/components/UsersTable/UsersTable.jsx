@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  getRandomUsers,
-} from "services/userService";
+import { getRandomUsers } from "services/userService";
 import THead from "./THead";
 
 const COLUMNS = [

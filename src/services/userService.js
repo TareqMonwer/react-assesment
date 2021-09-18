@@ -55,35 +55,3 @@ export const userEmailExists = (email) => {
   const existing = users.filter((user) => user.email === email);
   return existing > 0;
 };
-
-
-
-
-// const saveUniqueUsers = (localUsers, users) => {
-    // let nonDuplicates = [];
-    // console.log(localUsers, 'localusers')
-    // users.forEach((randomUser) => {
-    //   if (localUsers.length < 1) {
-    //     nonDuplicates = users;
-    //   } else {
-    //     localUsers.forEach((localUser) => {
-    //       if (randomUser.email !== localUser.email) {
-    //         console.log(`${randomUser.email} !== ${localUser.email}`)
-    //         nonDuplicates.unshift(randomUser);
-    //       }
-    //     });
-    //   }
-    // });
-    // console.log(nonDuplicates, 'non duplicates')
-    // console.log(localUsers, 'locausers')
-    // nonDuplicates.forEach(user => {
-    //   const { name, email, phone, gender } = user;
-    //   const completeName = `${name.title} ${name.first} ${name.last}`
-    //   storeUserData({ email, name: completeName, phone, gender, id: Date.now() }).then(
-    //     res => {
-    //       console.log(res)
-    //     }
-    //   )
-    // })
-    // return;
-  // };

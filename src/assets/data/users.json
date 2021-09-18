@@ -1,3 +1,11 @@
 {
-  "users": []
+  "users": [
+    {
+      "name": "tareq",
+      "email": "tareqmonwer137@gmail.com",
+      "gender": "Male",
+      "phone": "tareq",
+      "id": 1631966393731
+    }
+  ]
 }

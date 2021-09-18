@@ -109,7 +109,7 @@ const UserForm = () => {
       </div>
       <div className="flex flex-wrap -mx-3 mb-2">
         <div className="w-full md:w-full px-3 mb-6 md:mb-0">
-          <Button fluid onClick={() => handleSubmit()} type="submit" />
+          <Button fluid onClick={handleSubmit} type="submit" />
         </div>
       </div>
       {created && created !== 'error' && (
