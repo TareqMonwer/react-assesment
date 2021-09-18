@@ -21,10 +21,10 @@ const TBody = ({ data }) => {
                 {email}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {gender}
+                {cell}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {cell}
+                {gender}
               </td>
             </tr>
           );
