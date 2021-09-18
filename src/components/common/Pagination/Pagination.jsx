@@ -15,7 +15,7 @@ const Pagination = () => {
   return (
     <div className="flex">
       {[1, 2, 3, 4, 5, 6].map((i) => (
-        <div className="paginatorIem py-2 px-3 border cursor-pointer">{i}</div>
+        <div key={`page-${i}`} className="paginatorIem py-2 px-3 border cursor-pointer">{i}</div>
       ))}
       <SelectInput
         options={countOptions}
