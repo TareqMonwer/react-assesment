@@ -25,7 +25,7 @@ const ListPage = () => {
       .then((users) => {
         setRandomUsers(users);
         dispatch(loadUsers(users));
-        // saveRandomUsersToStorage(users);
+        saveRandomUsersToStorage(users);
       })
       .catch((err) => console.log(err));
     }
