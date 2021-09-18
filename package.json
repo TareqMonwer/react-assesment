@@ -45,6 +45,7 @@
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.14",
     "autoprefixer": "9.0.0",
+    "miragejs": "^0.1.41",
     "postcss": "^8.3.6",
     "sass": "^1.41.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"

@@ -3,18 +3,18 @@ import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
 import Layout from "containers/Layout";
 import Container from "containers/Container";
+import {CounterPage, FormPage, ListPage} from 'pages'
+// const CounterPage = loadable(() => import("pages/counter/CounterPage"), {
+//   fallback: <div>Loading....</div>,
+// });
 
-const CounterPage = loadable(() => import("pages/counter/CounterPage"), {
-  fallback: <div>Loading....</div>,
-});
+// const FormPage = loadable(() => import("pages/form/FormPage"), {
+//   fallback: <div>Loading....</div>,
+// });
 
-const FormPage = loadable(() => import("pages/form/FormPage"), {
-  fallback: <div>Loading....</div>,
-});
-
-const ListPage = loadable(() => import("pages/list/ListPage"), {
-  fallback: <div>Loading....</div>,
-});
+// const ListPage = loadable(() => import("pages/list/ListPage"), {
+//   fallback: <div>Loading....</div>,
+// });
 
 function App() {
   return (
