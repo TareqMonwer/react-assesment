@@ -16,6 +16,7 @@ const SelectInput = ({ label, id, selectedValue, options, onChange, ...props }) 
           id={id}
           value={selectedValue}
           onChange={(e) => onChange(e.target.value)}
+          {...props}
         >
           {options?.map(option => (
             <option key={option.value} value={option.value}>
