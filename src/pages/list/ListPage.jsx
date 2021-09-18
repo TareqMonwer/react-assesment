@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
 import _ from "lodash";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loadUsers } from "services/userService";
 import { getRandomUsers, saveRandomUsersToStorage } from "utils/users";
 import UsersTable from "components/UsersTable/UsersTable";
 import Layout from "containers/Layout";
@@ -13,6 +15,7 @@ const COLUMNS = [
 ];
 
 const ListPage = () => {
+  const dispatch = useDispatch();
   const [randomUsers, setRandomUsers] = useState([]);
   const [sortingKey, setSortingKey] = useState();
 
@@ -21,6 +24,7 @@ const ListPage = () => {
       getRandomUsers(2)
       .then((users) => {
         setRandomUsers(users);
+        dispatch(loadUsers(users));
         // saveRandomUsersToStorage(users);
       })
       .catch((err) => console.log(err));
@@ -28,8 +32,8 @@ const ListPage = () => {
     fn();
   }, []);
 
-  const handleSetSortingKey = async (key) => {
-    await setSortingKey(key);
+  const handleSetSortingKey = (key) => {
+    setSortingKey(key);
 
     if (key === "name") {
       const sortedByName = _.sortBy(randomUsers, (o) => {
@@ -43,7 +47,7 @@ const ListPage = () => {
 
   return (
     <Layout>
-      <h1>List of Random Users</h1>
+      <h1 className="mb-4 text-2xl text-gray-700">List of Random Users</h1>
 
       <UsersTable
         columns={COLUMNS}
