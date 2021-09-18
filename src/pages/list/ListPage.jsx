@@ -21,7 +21,7 @@ const ListPage = () => {
 
   useEffect(() => {
     const fn = () => {
-      getRandomUsers(2)
+      getRandomUsers(20)
       .then((users) => {
         setRandomUsers(users);
         dispatch(loadUsers(users));
