@@ -17,6 +17,7 @@ const COLUMNS = [
 const ListPage = () => {
   const dispatch = useDispatch();
   const [randomUsers, setRandomUsers] = useState([]);
+  // eslint-disable-next-line 
   const [sortingKey, setSortingKey] = useState();
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const ListPage = () => {
       .catch((err) => console.log(err));
     }
     fn();
-  }, []);
+  }, [dispatch]);
 
   const handleSetSortingKey = (key) => {
     setSortingKey(key);
