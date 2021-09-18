@@ -1,38 +1,33 @@
 import axios from "axios";
-import data from "assets/data/users.json";
-import { BASE_URL, USERS } from "utils/api/endpoints";
-const users = data.users;
+import firebase from "firebase.conf";
 
-export const emailBlankOrExists = (email) => {
-  let errFlag = false; // by default, email is valid.
+export const getUsers = async () => {
+  const db = firebase.firestore();
+  const data = await db.collection("users").get();
+  const users = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  return users;
+};
+
+export const emailInvalidOrExists = async (email) => {
+  const users = await getUsers();
   const existingUsers = users.filter((user) => user.email === email);
-  if (existingUsers.length > 0) {
-    errFlag = "Email already exists!";
-  } else if (!email) {
-    errFlag = "Email can't be left blank!";
-  } else {
-    // email is not blank neither exists in db.
-    return false;
-  }
-  return errFlag;
+  return existingUsers.length > 0;
 };
 
 export const validateEachFields = (fieldsArray) => {
   let result = fieldsArray.every((field) => {
     if (!field) {
-      return false
+      return false;
     }
-    return true
+    return true;
   });
   return result;
-}
+};
 
 export const storeUserData = (userObj) => {
-  const userData = { ...userObj, id: Date.now() };
-  return axios
-    .post(`${BASE_URL}/users`, userData)
-    .then((res) => res)
-    .catch((err) => err);
+  const userData = { ...userObj };
+  const db = firebase.firestore();
+  return db.collection("users").add(userData);
 };
 
 export const getRandomUsers = (limit = 20) => {
@@ -42,16 +37,11 @@ export const getRandomUsers = (limit = 20) => {
       return res.data.results;
     })
     .catch((err) => err);
-}
-
-export const getJSONServerUsers = () => {
-  return axios
-    .get(USERS)
-    .then((res) => res.data)
-    .catch((err) => err);
-}
+};
 
 export const userEmailExists = (email) => {
-  const existing = users.filter((user) => user.email === email);
-  return existing > 0;
+  getUsers().then((users) => {
+    const existing = users.filter((user) => user.email === email);
+    return existing > 0;
+  });
 };

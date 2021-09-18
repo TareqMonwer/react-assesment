@@ -4,7 +4,7 @@ import Input from "components/common/Input/Input";
 import SelectInput from "components/common/SelectInput/SelectInput";
 import Notification from "components/common/Notification/Notification";
 import {
-  emailBlankOrExists,
+  emailInvalidOrExists,
   storeUserData,
   validateEachFields
 } from "services/userService";
@@ -36,24 +36,24 @@ const UserForm = () => {
     setEmailErr(null);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const noBlankInputs = validateEachFields([name, gender, phone]);
+    const noBlankInputs = validateEachFields([name, gender, phone, email]);
     if (noBlankInputs) {
-      const emailErr = emailBlankOrExists(email);
-      if (!emailErr) {
+      const emailIsInvalid = await emailInvalidOrExists(email);
+      if (!emailIsInvalid) {
         const inputs = { name, email, gender, phone };
-        storeUserData(inputs, setEmailErr)
+        storeUserData(inputs)
           .then(res => {
             resetForm();
             setCreated(true);
           })
           .catch(err => {
-            console.log(err);
             setCreated('error');
-          })
+            console.log(err)
+          });
       } else {
-        setEmailErr(emailErr);
+        setEmailErr("This email is invalid or already in use.");
         setCreated('error');
       }
     } else {
