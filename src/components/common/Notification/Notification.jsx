@@ -6,7 +6,9 @@ const Notification = ({ type, message, location }) => {
   return (
     <div className="absolute  bottom-0 right-0 w-96">
       <div className={clsx("p-3 text-white font-bold mr-4 mb-4 flex items-center", {
+        // eslint-disable-next-line 
         ['bg-green-700']: type === 'success',
+        // eslint-disable-next-line 
         ['bg-pink-700']: type === 'error',
       })}>
         <div className="icon mr-2">

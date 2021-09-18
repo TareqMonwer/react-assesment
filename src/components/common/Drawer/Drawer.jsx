@@ -26,9 +26,11 @@ const Drawer = ({ open, onClose }) => {
     <>
     <div>
       <div
-        className={
+          className={
           clsx('fixed top-0 z-10 cursor-pointer p-3 bg-white border border-1', {
+            // eslint-disable-next-line 
             ['ml-60']: open,
+            // eslint-disable-next-line 
             ['ml-0']: !open
           })
         }

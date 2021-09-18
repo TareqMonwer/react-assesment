@@ -12,7 +12,9 @@ const DrawerBox = ({ isDropdown, children, selected, label, onClick }) => {
       onClick={() => onClick()}
       className="relative cursor-pointer  text-white border-b border-indigo-900">
       <div className={clsx(drawerBoxClasses, {
+        // eslint-disable-next-line
         ['bg-indigo-900']: selected,
+        // eslint-disable-next-line 
         ['bg-indigo-700']: !selected,
       })}>
         <RiReactjsLine />

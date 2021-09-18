@@ -16,7 +16,9 @@ const Layout = ({ children }) => {
       <Nav />
       <Drawer open={drawerOpen} onClose={handleClose} />
       <div className={clsx('main', {
+        // eslint-disable-next-line 
         ['ml-60']: drawerOpen,
+        // eslint-disable-next-line 
         ['ml-0']: !drawerOpen,
         })}>
         <div className="p-10">

@@ -39,7 +39,6 @@ export const getRandomUsers = (limit = 20) => {
   return axios
     .get(`https://randomuser.me/api?results=${limit}`)
     .then((res) => {
-      console.log(res)
       return res.data.results;
     })
     .catch((err) => err);

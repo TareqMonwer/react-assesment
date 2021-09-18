@@ -1,14 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import {
-  getJSONServerUsers,
   getRandomUsers,
-  storeUserData,
-  userEmailExists,
 } from "services/userService";
 import THead from "./THead";
 
-const COLUMNS = [{label: 'Name'}, {label: 'Email'}, {label: 'Phone'}, {label: 'Gender'}]
+const COLUMNS = [
+  { index: 'name', label: 'Name' },
+  { index: 'email', label: 'Email' },
+  { index: 'phone', label: 'Phone' },
+  { index: 'gender', label: 'Gender' }
+];
 
 const UsersTable = () => {
   const [randomUsers, setRandomUsers] = useState([]);
@@ -17,27 +18,10 @@ const UsersTable = () => {
     getRandomUsers(20)
       .then((res) => {
         setRandomUsers(res);
-        createUsers(res)
       })
       .catch((err) => console.log(err));
   }, [])
 
-  const createUsers = (usersResponse) => {
-    usersResponse.forEach((user, index) => {
-      if (!userEmailExists(user.email)) {
-        const { name, email, cell: phone, gender } = user;
-        const completeName = `${name.title} ${name.first} ${name.last}`;
-        const userObj = {
-          email,
-          name: completeName,
-          phone,
-          gender,
-          id: Date.now(),
-        };
-        storeUserData(userObj)
-      }
-    });
-  };
 
   return (
     <div className="flex flex-col">
