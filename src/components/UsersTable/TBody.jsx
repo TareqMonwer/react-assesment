@@ -1,7 +1,7 @@
 const TBody = ({ data }) => {
   return (
     <tbody className="bg-white divide-y divide-gray-200">
-      {data.length > 0 ? (
+      {data && data.length > 0 ? (
         data.map((user, index) => {
           const { name, email, gender } = user;
           const cell = user.cell || user.phone;

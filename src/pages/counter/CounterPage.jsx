@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from 'services/counterService';
 import Layout from 'containers/Layout';
 import Button from 'components/common/Button/Button';
 
 const CounterPage = () => {
-  const [count, setCount] = useState(0);
-  const handleSetCount = () => setCount(prev => prev + 1)
+  const count = useSelector((state) => state.counter.value)
+  const dispatch = useDispatch()
 
   return (
     <Layout>
@@ -13,7 +14,7 @@ const CounterPage = () => {
         rounded inline-block">
           {count}
         </h1>
-        <Button onClick={handleSetCount} />
+        <Button onClick={() => dispatch(increment())} />
       </div>
     </Layout>
   );

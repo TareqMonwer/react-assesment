@@ -1,17 +1,15 @@
 import axios from "axios";
-import firebase from "firebase.conf";
+import { db } from "firebase.conf";
+import {
+  collection, getDocs, addDoc, query, where
+} from "firebase/firestore";
+
+const col = collection(db, "users");
 
 export const getUsers = async () => {
-  const db = firebase.firestore();
-  const data = await db.collection("users").get();
-  const users = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  const snapshot = await getDocs(col);
+  const users = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   return users;
-};
-
-export const emailInvalidOrExists = async (email) => {
-  const users = await getUsers();
-  const existingUsers = users.filter((user) => user.email === email);
-  return existingUsers.length > 0;
 };
 
 export const validateEachFields = (fieldsArray) => {
@@ -25,9 +23,7 @@ export const validateEachFields = (fieldsArray) => {
 };
 
 export const storeUserData = (userObj) => {
-  const userData = { ...userObj };
-  const db = firebase.firestore();
-  return db.collection("users").add(userData);
+  return addDoc(col, userObj);
 };
 
 export const getRandomUsers = (limit = 20) => {
@@ -39,9 +35,20 @@ export const getRandomUsers = (limit = 20) => {
     .catch((err) => err);
 };
 
-export const userEmailExists = (email) => {
-  getUsers().then((users) => {
-    const existing = users.filter((user) => user.email === email);
-    return existing > 0;
+export const userEmailExists = async (email) => {
+  const q = query(col, where("email", "==", email));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.length > 0;
+};
+
+export const saveRandomUsersToStorage = (users) => {
+  users.forEach(async (user) => {
+    if (await userEmailExists(user.email)) {
+      console.log(user.email, " <<found in database...");
+    } else {
+      const { name: {title, first, last}, email, gender, cell } = user;
+      const fullName = `${title} ${first} ${last}`;
+      storeUserData({ name: fullName, email, gender, phone: cell });
+    }
   });
 };
