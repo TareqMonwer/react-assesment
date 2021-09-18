@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "containers/Layout";
 import UserForm from "components/UserForm/UserForm";
-import { getUsers } from "services/userService";
+import { getUsers } from "utils/users";
 import UsersTable from "components/UsersTable/UsersTable";
 
 const COLUMNS = [

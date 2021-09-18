@@ -7,7 +7,7 @@ import {
   userEmailExists,
   storeUserData,
   validateEachFields
-} from "services/userService";
+} from "utils/users";
 
 const GENDER_OPTIONS = [
   { label: "Female", value: "Female" },

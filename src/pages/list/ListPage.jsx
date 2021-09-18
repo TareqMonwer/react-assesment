@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
-import { getRandomUsers, saveRandomUsersToStorage } from "services/userService";
+import { getRandomUsers, saveRandomUsersToStorage } from "utils/users";
 import UsersTable from "components/UsersTable/UsersTable";
 import Layout from "containers/Layout";
 import React from "react";
