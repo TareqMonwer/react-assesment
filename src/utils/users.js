@@ -27,8 +27,10 @@ export const storeUserData = (userObj) => {
 };
 
 export const getRandomUsers = (limit = 20, page = 1) => {
+  const URI = 'https://randomuser.me/api';
+  const API_URI = `${URI}?page=${page}&results=${limit}`;
   return axios
-    .get(`https://randomuser.me/api?page=${page}&results=${limit}`)
+    .get(API_URI)
     .then((res) => {
       return res.data.results;
     })
