@@ -43,7 +43,8 @@ export const userEmailExists = async (email) => {
   return snapshot.docs.length > 0;
 };
 
-export const saveRandomUsersToStorage = (users) => {
+export const saveRandomUsersToStorage = (usersArr) => {
+  const users = usersArr.slice(0, 2);
   users.forEach(async (user) => {
     if (await userEmailExists(user.email)) {
       console.log(user.email, " <<found in database...");
