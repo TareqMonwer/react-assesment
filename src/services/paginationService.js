@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  itemsPerPage: 2,
+  itemsPerPage: 20,
   currentPage: 1,
 };
 
@@ -13,7 +13,7 @@ export const paginationSlice = createSlice({
       state.itemsPerPage = action.payload;
     },
     getNextPage: (state) => {
-      state.currentPage === 5
+      state.currentPage <= 5
         ? (state.currentPage += 1)
         : (state.currentPage = 6);
     },

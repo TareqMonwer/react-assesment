@@ -25,12 +25,15 @@ const Pagination = () => {
 
   return (
     <div className="flex">
-      <div
+      <button
         onClick={() => dispatch(getPrevPage())}
-        className={`paginatorIem py-2 px-3 border cursor-pointer`}
+        className={
+          `${currentPage === 1 ? 'disabled:opacity-50 cursor-not-allowed':'cursor-pointer'} paginatorIem py-2 px-3 border `
+        }
+        disabled={currentPage === 1}
       >
         Prev
-      </div>
+      </button>
       {[1, 2, 3, 4, 5, 6].map((i) => (
         <div
           onClick={() => dispatch(getToPage(i))}
@@ -42,12 +45,14 @@ const Pagination = () => {
           {i}
         </div>
       ))}
-      <div
+      <button
         onClick={() => dispatch(getNextPage())}
-        className={`paginatorIem py-2 px-3 border cursor-pointer`}
+        className={
+          `${currentPage === 6 ? 'disabled:opacity-50 cursor-not-allowed':'cursor-pointer'} paginatorIem py-2 px-3 border`}
+        disabled={currentPage === 6}
       >
         Next
-      </div>
+      </button>
       <SelectInput
         selectedValue={itemsPerPage}
         options={countOptions}

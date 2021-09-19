@@ -26,9 +26,9 @@ export const storeUserData = (userObj) => {
   return addDoc(col, userObj);
 };
 
-export const getRandomUsers = (limit = 20) => {
+export const getRandomUsers = (limit = 20, page = 1) => {
   return axios
-    .get(`https://randomuser.me/api?results=${limit}`)
+    .get(`https://randomuser.me/api?page=${page}&results=${limit}`)
     .then((res) => {
       return res.data.results;
     })

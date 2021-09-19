@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadUsers } from "services/userService";
 import { getRandomUsers, saveRandomUsersToStorage } from "utils/users";
 import UsersTable from "components/UsersTable/UsersTable";
@@ -16,13 +16,15 @@ const COLUMNS = [
 
 const ListPage = () => {
   const dispatch = useDispatch();
+  const itemsPerPage = useSelector(state => state.pagination.itemsPerPage);
+  const currentPage = useSelector(state => state.pagination.currentPage);
   const [randomUsers, setRandomUsers] = useState([]);
   // eslint-disable-next-line 
   const [sortingKey, setSortingKey] = useState();
 
   useEffect(() => {
     const fn = () => {
-      getRandomUsers(20)
+      getRandomUsers(itemsPerPage, currentPage)
       .then((users) => {
         setRandomUsers(users);
         dispatch(loadUsers(users));
@@ -31,7 +33,7 @@ const ListPage = () => {
       .catch((err) => console.log(err));
     }
     fn();
-  }, [dispatch]);
+  }, [dispatch, itemsPerPage, currentPage]);
 
   const handleSetSortingKey = (key) => {
     setSortingKey(key);
