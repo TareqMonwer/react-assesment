@@ -23,7 +23,7 @@ const FormPage = () => {
       </div>
       {users?.length > 0 &&
         <div className="flex justify-center mt-10">
-          <UsersTable columns={COLUMNS} data={users} />
+          <UsersTable columns={COLUMNS} data={users} saveData={false} />
         </div>}
     </Layout>
   );

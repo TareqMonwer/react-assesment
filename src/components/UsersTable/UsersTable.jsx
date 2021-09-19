@@ -13,11 +13,12 @@ const COLUMNS = [
   { index: "gender", label: "Gender" },
 ];
 
-const UsersTable = () => {
+const UsersTable = ({saveData}) => {
   const dispatch = useDispatch();
   const itemsPerPage = useSelector((state) => state.pagination.itemsPerPage);
   const currentPage = useSelector((state) => state.pagination.currentPage);
   const [randomUsers, setRandomUsers] = useState([]);
+  // eslint-disable-next-line
   const [searchTerm, setSearchTerm] = useState("");
   // eslint-disable-next-line
   const [sortingKey, setSortingKey] = useState();
@@ -28,12 +29,12 @@ const UsersTable = () => {
         .then((users) => {
           setRandomUsers(users);
           dispatch(loadUsers(users));
-          saveRandomUsersToStorage(users);
+          if (saveData) saveRandomUsersToStorage(users)
         })
         .catch((err) => console.log(err));
     };
     fn();
-  }, [dispatch, itemsPerPage, currentPage]);
+  }, [dispatch, itemsPerPage, currentPage, saveData]);
 
   const handleSetSortingKey = (key) => {
     setSortingKey(key);
@@ -51,6 +52,7 @@ const UsersTable = () => {
     if (term !== "" || term !== undefined) {
       setSearchTerm(term);
 
+      // eslint-disable-next-line
       const searchResults = randomUsers.filter((user) => {
         const {
           name: { title, first, last },
@@ -59,15 +61,16 @@ const UsersTable = () => {
         } = user;
         const fullName = `${title} ${first} ${last}`;
         // console.log({fullName, email, phone}, term)
-        var result = _.pickBy(
+        const result = _.pickBy(
           { fullName, email, phone },
           function (value, key) {
             return _.includes(key, term);
           }
         );
         console.log(result, term)
+        return result.length > 0
       });
-      // console.log(searchResults, ' for ', term);
+      console.log(searchResults, ' for ', term);
     }
   };
 
